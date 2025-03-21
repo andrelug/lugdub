@@ -45,7 +45,7 @@ export const GET = withWorkspace(
 
     let link: Link | null = null;
 
-    event = oldEvent || event;
+    event = (oldEvent as typeof VALID_ANALYTICS_ENDPOINTS[number]) || event;
     groupBy = oldType || groupBy;
 
     if (domain) {
