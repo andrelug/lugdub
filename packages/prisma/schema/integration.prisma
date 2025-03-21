@@ -5,14 +5,14 @@ model Integration {
   name        String
   slug        String   @unique
   description String?
-  readme      String?  @db.LongText
+  readme      String?  @db.Text
   developer   String
   website     String
   logo        String?
   screenshots Json?
   verified    Boolean  @default(false)
-  installUrl  String?  @db.LongText
-  guideUrl    String?  @db.LongText
+  installUrl  String?  @db.Text
+  guideUrl    String?  @db.Text
   category    String?
   comingSoon  Boolean  @default(false)
   createdAt   DateTime @default(now())

@@ -40,7 +40,7 @@ model Program {
   defaultDiscountId String?     @unique // default discount for the program
   landerData        Json?       @db.Json
   resources         Json?       @db.Json
-  termsUrl          String?     @db.LongText
+  termsUrl          String?     @db.Text
   ageVerification   Int?
 
   createdAt DateTime @default(now())
@@ -55,9 +55,9 @@ model Program {
   links           Link[]
   commissions     Commission[]
   rewards         Reward[]
-  defaultReward   Reward?              @relation("ProgramDefaultReward", fields: [defaultRewardId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  defaultReward   Reward?              @relation("ProgramDefaultReward", fields: [defaultRewardId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   discounts       Discount[]           @relation("ProgramDiscounts")
-  defaultDiscount Discount?            @relation("ProgramDefaultDiscount", fields: [defaultDiscountId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  defaultDiscount Discount?            @relation("ProgramDefaultDiscount", fields: [defaultDiscountId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 
   @@index([workspaceId])
   @@index([domain])
@@ -94,9 +94,9 @@ model ProgramApplication {
   partnerId String?
   name      String
   email     String
-  proposal  String?  @db.LongText
+  proposal  String?  @db.Text
   website   String?  @db.Text
-  comments  String?  @db.LongText
+  comments  String?  @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
